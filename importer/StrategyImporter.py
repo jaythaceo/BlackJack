@@ -1,3 +1,4 @@
+
 import csv
 
 
@@ -18,16 +19,19 @@ class StrategyImporter(object):
 		pair = 20
 
 		with open(self.player_file, 'rU') as player_csv:
-			reader = csv.DictReader(player_csv, delimiter = ';')
+			reader = cvs.DictReader(player_csv, delimiter = ';')
 			for row in reader:
 				if hard >= 5:
 					self.hard_strategy[hard] = row
-					hard -= 1 
+					hard -= 1
+
 				elif soft >= 12:
 					self.soft_strategy[soft] = row
 					soft -= 1
+
 				elif pair >= 4:
 					self.pair_strategy[pair] = row
 					pair -= 2
 
 		return self.hard_strategy, self.soft_strategy, self.pair_strategy
+
