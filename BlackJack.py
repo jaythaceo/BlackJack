@@ -25,3 +25,21 @@ BLACKJACK_RULES = {
 HARD_STRATEGY = {}
 SOFT_STRATEGY = {}
 PAIR_STRATEGY = {}
+
+
+class Card(object):
+	"""
+	Represents a card with name and value.
+	"""
+	def __init__(self, name, value):
+		self.name = name
+		self.value = value
+
+	def __str__(self):
+		return "%s" % self.name
+		
+
+class Shoe(object):
+	"""
+	Represents the shoe, which consists of a number of card decks.
+	"""
