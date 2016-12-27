@@ -43,3 +43,55 @@ class Shoe(object):
 	"""
 	Represents the shoe, which consists of a number of card decks.
 	"""
+	reshuffle = False
+
+	def __init__(self, decks):
+		self.count = 0
+		self.count_history = []
+		self.ideal_count = {}
+		self.decks = decks
+		self.cards = self.init_cards()
+		self.init_count()
+
+	def __str__(self):
+		s = ""
+		for c in self.cards:
+			s += "%s\n" % c
+		return s
+
+	def init_cards(self):
+		"""
+		Initialize the shoe with shuffled playing cards and set count to zero.
+		"""
+		self.count = 0
+		self.count_history.append(self.count)
+
+		cards = []
+		for d in range(self.decks):
+			for c in CARDS:
+				self.ideal_count[card] = 4 * SHOE_SIZE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
