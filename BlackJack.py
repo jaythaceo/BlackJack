@@ -69,9 +69,21 @@ class Shoe(object):
 		cards = []
 		for d in range(self.decks):
 			for c in CARDS:
-				self.ideal_count[card] = 4 * SHOE_SIZE
+				for i in range(0, 4):
+					cards.append(CArd(c, CARDS[c]))
+		shuffle(cards)
+		return cards
 
+	def init_count(self):
+		"""Keep track of the number of occurences for each card in the shoe in the course over the game.
+		   ideal_count is a dict containing (card name - number of occurences in shoe) pairs.
+		"""
 
+		for card in cards:
+			self.ideal_count[card] = 4 * SHOE_SIZE
+
+	def deal(self):
+		
 
 
 
