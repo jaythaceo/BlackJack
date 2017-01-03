@@ -116,8 +116,34 @@ class Shoe(object):
 		return len(self.cards) / (DECK_SIZE * self.decks)
 
 
+class Hand(object):
+		"""
+	Represents a hand, either from the dealer or the player
+	"""
+	_value = 0
+	_aces = []
+	_aces_soft = 0
+	splithand = False
+	surrender = False
+	doubled = False
 
+	def __init__(self, cards):
+		self.cards = cards
+		
+	def __str__(self):
+		h = ""
+		for c in self.cards:
+			h += "%s " % c
+		return h
 
+	@property
+	def value(self):
+		"""
+		Returns: The current value of the hand(aces are either counted as 1 or 11).
+		"""
+		self._value = 0
+		for c in self.cards:
+			self._value += c.value
 
 
 
