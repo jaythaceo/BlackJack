@@ -145,6 +145,15 @@ class Hand(object):
 		for c in self.cards:
 			self._value += c.value
 
+		if self._value > 21 and self.aces_soft > 0:
+			for ace in self.aces:
+				if ace.value == 11:
+					self._value -= 10
+					ace.value = 1
+					if self._value <= 21:
+						break
+		return self._value
+
 
 
 
