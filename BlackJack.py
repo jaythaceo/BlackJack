@@ -83,10 +83,37 @@ class Shoe(object):
 			self.ideal_count[card] = 4 * SHOE_SIZE
 
 	def deal(self):
-		
+		"""
+		Returns: The next card in the shoe. If the shoe penetration is reached, the shoe gets reshuffled.
+		"""
+		if self.shoe_penetration() < SHOE_PENETRATION:
+			self.reshuffle = True
+		card = self.cards.pop()
 
+		assert self.ideal_count[card.name] > 0, "Either a cheater or bug!"
+		self.ideal_count[card.name] -= 1
 
+		self.do_count(card)
+		return card
 
+	def do_count(self, card):
+		"""
+		Add the dealt card to current count.
+		"""
+		self.count += BASIC_OMEGA_II[card.name]
+		self.count_history.append(self.truecount())
+
+	def truecount(self):
+		"""
+		Return: The current true count.
+		"""
+		return self.count / (self.decks * self.shoe_penetration())
+
+	def shoe_penetration(self):
+		"""
+		Returns: Ratio of cards that are still in the show to all initial cards.
+		"""
+		return len(self.cards) / (DECK_SIZE * self.decks)
 
 
 
