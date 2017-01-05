@@ -154,8 +154,32 @@ class Hand(object):
 						break
 		return self._value
 
+	@property
+	def aces(self):
+		"""
+		Return: All the aces in the current hand
+		"""
+		self._aces = []
+		for c in self.cards:
+			if c.name == "Ace":
+				self._aces.append(c)
+		return self._aces
 
+	@property
+	def aces_soft(self):
+		"""
+		Returns: The number of aces values as 11
+		"""
+		self._aces_soft = 0
+		for ace in self.aces:
+			if ace.value == 11:
+				self._aces_soft += 1
+		return self._aces_soft
 
+	def soft(self):
+		"""
+		
+		"""
 
 
 
