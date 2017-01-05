@@ -178,8 +178,12 @@ class Hand(object):
 
 	def soft(self):
 		"""
-		
+		Detremines whether the current hand is soft (soft means that it consists of aces valued at 11)
 		"""
+		if self.aces_soft > 0:
+			return True
+		else:
+			return False
 
 
 
