@@ -196,8 +196,18 @@ class Hand(object):
 
 	def blackjack(self):
 		"""
-		
+		Check a hand for blackjack. Taking the defined BLACKJACK_RULES into account.
 		"""
+		if not self.splithand and self.value == 21:
+			if all(c.value == 7 for c in self.cards) and BLACKJACK_RULES['triple7']:
+				return True
+			elif self.length() == 2:
+				return True
+			else:
+				return False
+		else:
+			return False
+
 
 
 
