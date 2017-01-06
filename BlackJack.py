@@ -178,13 +178,26 @@ class Hand(object):
 
 	def soft(self):
 		"""
-		Detremines whether the current hand is soft (soft means that it consists of aces valued at 11)
+		Determines whether the current hand is soft (soft means that it consists of aces valued at 11)
 		"""
 		if self.aces_soft > 0:
 			return True
 		else:
 			return False
 
+	def splitable(self):
+		"""
+		Determines if the current hand can be splited
+		"""
+		if self.length() == 2 and self.cards[0].name == self.cards[1].name:
+			return True
+		else:
+			return False
+
+	def blackjack(self):
+		"""
+		
+		"""
 
 
 
