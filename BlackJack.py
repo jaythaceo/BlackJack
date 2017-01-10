@@ -208,6 +208,15 @@ class Hand(object):
 		else:
 			return False
 
+	def busted(self):
+		"""
+		Checks if the hand is busted.
+		"""
+		if self.value > 21:
+			return True
+		else:
+			return False
+
 
 
 
