@@ -217,6 +217,14 @@ class Hand(object):
 		else:
 			return False
 
+	def add_card(self, card):
+		"""
+		Add a card to the current hand.
+		"""
+		self.cards.append(card)
+
+	
+
 
 
 
