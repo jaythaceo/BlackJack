@@ -117,7 +117,7 @@ class Shoe(object):
 
 
 class Hand(object):
-		"""
+	"""
 	Represents a hand, either from the dealer or the player
 	"""
 	_value = 0
