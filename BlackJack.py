@@ -223,7 +223,22 @@ class Hand(object):
 		"""
 		self.cards.append(card)
 
-	
+	def split(self):
+		"""
+		Split the current hand.
+		Returns: The new hand created from the split.
+		"""
+		self.splithand = True
+		c = self.cards.pop()
+		new_hand = Hand([c])
+		new_hand.splithand = True
+		return new_hand
+
+	def length(self):
+		"""
+		Returns: The number of cards in the current hand.
+		"""
+		return len(self.cards)
 
 
 
