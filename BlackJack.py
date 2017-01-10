@@ -241,10 +241,11 @@ class Hand(object):
 		return len(self.cards)
 
 
-
-
-
-
+class Player(object):
+	"""
+	Represent a player
+	"""
+	
 
 
 
