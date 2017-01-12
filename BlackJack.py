@@ -70,7 +70,7 @@ class Shoe(object):
 		for d in range(self.decks):
 			for c in CARDS:
 				for i in range(0, 4):
-					cards.append(CArd(c, CARDS[c]))
+					cards.append(Card(c, CARDS[c]))
 		shuffle(cards)
 		return cards
 
@@ -245,7 +245,37 @@ class Player(object):
 	"""
 	Represent a player
 	"""
-	
+	def __init__(self, hand=None, dealer_hand=None):
+		self.hands = [hand]
+		self.dealer_hand = dealer_hand
+
+	def set_hands(self, new_hand, new_dealer_hand):
+		self.hands = [new_hand]
+		self.dealer_hand = new_dealer_hand
+
+	def play(self, shoe):
+		for hand in self.hands:
+			# print "Playing hand: %s" % hand
+			self.play_hand(hand, shoe)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
