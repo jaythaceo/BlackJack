@@ -297,6 +297,11 @@ class Player(object):
 		# print "Hit %s" % hand
 		self.play_hand(hand, shoe)
 
+	def split(self, hand, shoe):
+		self.hands.append(hand.split())
+		# print "Split %s" % hand
+		self.play_hand(hand, shoe)
+
 
 
 
