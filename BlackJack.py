@@ -289,7 +289,13 @@ class Player(object):
 
 			if flag == 'S':
 				break
-				
+
+
+	def hit(self, hand, shoe):
+		c = shoe.deal()
+		hand.add_card(c)
+		# print "Hit %s" % hand
+		self.play_hand(hand, shoe)
 
 
 
