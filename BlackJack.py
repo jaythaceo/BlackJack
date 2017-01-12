@@ -258,6 +258,39 @@ class Player(object):
 			# print "Playing hand: %s" % hand
 			self.play_hand(hand, shoe)
 
+	def play_hand(self, hand, shoe):
+		if hand.length() < 2:
+			if hand.cards[0].name == "Ace":
+				hand.cards[0].value = 11
+			self.hhit(hand, shoe)
+
+		while not hand.busted() and not hand.blackjack():
+			if hand.soft():
+				flag = SOFT_STRATEGY[hand.value][self.dealer_hand.cards[0].name]
+			elif hand.splitable():
+				flag = PAIR_STRATEGY[hand.value][self.dealer_hand.cards[0].name]
+			else:
+				flag = HARD_STRATEGY[hand.value][self.dealer_hand.cards[0].name]
+
+			if flag == 'D':
+				if hand.length() == 2:
+					# print "Double Down"
+					hand.doubled = True
+					self.hit(hand, shoe)
+					break
+				else:
+					flag = 'H'
+
+			if flag == 'H':
+				self.hit(hand, shoe)
+
+			if flag == 'P':
+				self.split(hand, shoe)
+
+			if flag == 'S':
+				break
+				
+
 
 
 
