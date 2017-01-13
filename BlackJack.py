@@ -321,13 +321,13 @@ class Dealer(object):
 		self.hand.add_card(c)
 		# print "Dealer hitted: %s" % c
 
-	  # Returns an array of 6 numbers representing the probability that the final score of the dealer is
-    # [17, 18, 19, 20, 21, Busted] '''
-    # TODO Differentiate 21 and BJ
-    # TODO make an actual tree, this is false AF
-    def get_probabilities(self):
-    	start_value = self.hand.value
-    	# We'll draw 5 cards no matter what an count how often we got 17, 18, 19, 20, 21, Busted
+	# Returns an array of 6 numbers representing the probability that the final score of the dealer is
+  # [17, 18, 19, 20, 21, Busted] '''
+  # TODO Differentiate 21 and BJ
+  # TODO make an actual tree, this is false AF
+  def get_probabilities(self):
+  	start_value = self.hand.value
+  	# We'll draw 5 cards no matter what an count how often we got 17, 18, 19, 20, 21, Busted
 
-    
+
 	
