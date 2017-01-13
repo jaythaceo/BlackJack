@@ -301,29 +301,3 @@ class Player(object):
 		self.hands.append(hand.split())
 		# print "Split %s" % hand
 		self.play_hand(hand, shoe)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
