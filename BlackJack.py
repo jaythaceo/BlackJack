@@ -301,3 +301,33 @@ class Player(object):
 		self.hands.append(hand.split())
 		# print "Split %s" % hand
 		self.play_hand(hand, shoe)
+
+class Dealer(object):
+	"""
+	Represent the dealer
+	"""
+	def __init__(self, hand=None):
+		self.hand = hand
+
+	def set_hand(self, new_hand):
+		self.hand = new_hand
+
+	def play(self, shoe):
+		while self.hand.value < 17:
+			self.hit(shoe)
+
+	def hit(self, shoe):
+		c = shoe.deal()
+		self.hand.add_card(c)
+		# print "Dealer hitted: %s" % c
+
+	  # Returns an array of 6 numbers representing the probability that the final score of the dealer is
+    # [17, 18, 19, 20, 21, Busted] '''
+    # TODO Differentiate 21 and BJ
+    # TODO make an actual tree, this is false AF
+    def get_probabilities(self):
+    	start_value = self.hand.value
+    	# We'll draw 5 cards no matter what an count how often we got 17, 18, 19, 20, 21, Busted
+
+    
+	
