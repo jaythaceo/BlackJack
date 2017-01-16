@@ -331,8 +331,8 @@ class Dealer(object):
 
 class Tree(object):
 	"""
-	A tree that opens a statistical card and changesas a new
-	statisitical card is added. In this context, a statistical card is a list pf possible values, each with a probability.
+	A tree that opens a statistical card and changes as a new
+	statistical card is added. In this context, a statistical card is a list of possible values, each with a probability.
 	"""
 	def __init__(self, start=[]):
 		self.tree = []
@@ -355,7 +355,7 @@ class Tree(object):
 
 class Game(object):
 	"""
-	a sequence of Blackjack Rounds that keeps track of total money won or lost
+	A sequence of Blackjack Rounds that keeps track of total money won or lost.
 	"""
 	def __init__(self):
 		self.shoe = Shoe(SHOE_SIZE)
@@ -364,4 +364,46 @@ class Game(object):
 		self.stake = 1.0
 		self.player = Player()
 		self.dealer = Dealer()
-		
+
+	def get_hand_winnings(self, hand):
+		win = 0.0
+		bet = self.stake
+		if not hand.surrender:
+			if hand.busted():
+				status = "Lost"
+			else:
+				if hand.blackjack():
+					if self.dealer.hand.blackjack():
+						status = "PUSH"
+					else:
+						status = "WON 3:2"
+				elif self.dealer.hand.busted():
+					status = "WON"
+				elif self.dealer.hand.value < hand.value:
+					status = "WON"
+				elif self.dealer.hand.value > hand.value:
+					status = "LOST"
+				elif self.dealer.hand.value == hand.value:
+					if self.dealer.hand.blackjack():
+						status = "LOST" # players 21 vs dealers blackjack
+					else:
+						status = "PUSH"
+		else:
+			status = "SURRENDER"
+
+		if status == "LOST":
+			win += -1
+		elif status == "WON":
+			win += 1
+		elif status == "WON 3:2":
+			win += 1.5
+		elif status == "SURRENDER":
+			win += -0.5
+		if hand.doubled:
+			win *= 2
+			bet *= 2
+
+		win *= self.stake
+
+		return win, bet
+				
