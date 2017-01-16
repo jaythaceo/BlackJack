@@ -328,3 +328,28 @@ class Dealer(object):
   def get_probabilities(self) :
       start_value = self.hand.value
       # We'll draw 5 cards no matter what an count how often we got 17, 18, 19, 20, 21, Busted
+
+class Tree(object):
+	"""
+	A tree that opens a statistical card and changesas a new
+	statisitical card is added. In this context, a statistical card is a list pf possible values, each with a probability.
+	"""
+	def __init__(self, start=[]):
+		self.tree = []
+		self.tree.append(start)
+
+	def add_a_statistical_card(self, stat_card):
+		# New set of leaves in a tree.
+		leaves = []
+		for p in self.tree[-1]:
+			for v in stat_card:
+				new_value = v + p
+				proba = self.tree[-1][p]*stat_card[v]
+				if(new_value > 21):
+					# All busted values are 22
+					new_value = 22
+				if (new_value in leaves):
+					leaves[new_value] = leaves[new_value] + proba
+				else:
+					leaves[new_value] = proba
+		
