@@ -406,4 +406,35 @@ class Game(object):
 		win *= self.stake
 
 		return win, bet
-				
+
+	def play_round(self):
+		if self.shoe.truecount() > 6:
+			self.stake = BET_SPREAD
+		else:
+			self.stake = 1.0
+
+		player_hand = Hand([self.shoe.deal(), self.shoe.deal()])
+		dealer_hand = Hand([self.shoe.deal()])
+		self.player.set_hands(player_hand, dealer_hand)
+		self.dealer.set_hands(dealer_hand)
+		# print "Dealer hand: %s" % self.dealer.hand
+		# print "Player hand: %s" % self.player.hands[0]
+
+		self.player.play(self.shoe)
+		self.dealer.play(self.shoe)
+
+		# print ""
+
+		for hand in self.player.hands:
+			win, bet = self.get_hand_winnings(hand)
+			self.money += win
+			self.bet += bet
+			# print "Player Hand: %s %s (Value: %d, Busted: %r, BlackJack: %r, Splithand: %r, Soft: %r, Surrender: %r, Doubled: %r)" % (hand, status, hand.value, hand.busted(), hand.blackjack(), hand.splithand, hand.soft(), hand.surrender, hand.doubled)
+
+		 # print "Dealer Hand: %s (%d)" % (self.dealer.hand, self.dealer.hand.value)
+
+	def get_money(self):
+		return self.money
+
+	def get_bet(self):
+		return self.bet
