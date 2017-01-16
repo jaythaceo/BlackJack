@@ -352,4 +352,16 @@ class Tree(object):
 					leaves[new_value] = leaves[new_value] + proba
 				else:
 					leaves[new_value] = proba
+
+class Game(object):
+	"""
+	a sequence of Blackjack Rounds that keeps track of total money won or lost
+	"""
+	def __init__(self):
+		self.shoe = Shoe(SHOE_SIZE)
+		self.money = 0.0
+		self.bet = 0.0
+		self.stake = 1.0
+		self.player = Player()
+		self.dealer = Dealer()
 		
